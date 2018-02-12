@@ -54,7 +54,7 @@ def Model_Resolution(model,datapath="Example/data.dat"):
 
     
     instance = model.create_instance(datapath) # load parameters       
-    opt = SolverFactory('cplex') # Solver use during the optimization    
+    opt = SolverFactory('glpk') # Solver use during the optimization
     results = opt.solve(instance, tee=True) # Solving a model instance 
     instance.solutions.load_from(results)  # Loading solution into instance
     return instance
@@ -114,7 +114,7 @@ def Model_Resolution_binary(model,datapath="Example/data_binary.dat"):
     
     
     instance = model.create_instance("Example/data_binary.dat") # load parameters       
-    opt = SolverFactory('cplex') # Solver use during the optimization    
+    opt = SolverFactory('glpk') # Solver use during the optimization
 #    opt.options['emphasis_memory'] = 'y'
 #    opt.options['node_select'] = 3
     results = opt.solve(instance, tee=True,options_string="mipgap=0.11") # Solving a model instance 
@@ -176,7 +176,7 @@ def Model_Resolution_Integer(model,datapath="Example/data_Integer.dat"):
     
     
     instance = model.create_instance("Example/data_Integer.dat") # load parameters       
-    opt = SolverFactory('cplex') # Solver use during the optimization    
+    opt = SolverFactory('glpk') # Solver use during the optimization
 #    opt.options['emphasis_memory'] = 'y'
 #    opt.options['node_select'] = 3
     results = opt.solve(instance, tee=True,options_string="mipgap=0.07") # Solving a model instance 
@@ -228,7 +228,7 @@ def Model_Resolution_Dispatch(model,datapath="Example/data_Dispatch.dat"):
     model.ScenarioLostLoadCost = Constraint(rule=Scenario_Lost_Load_Cost)
     
     instance = model.create_instance("Example/data_dispatch.dat") # load parameters       
-    opt = SolverFactory('cplex') # Solver use during the optimization    
+    opt = SolverFactory('glpk') # Solver use during the optimization
 #    opt.options['emphasis_memory'] = 'y'
 #    opt.options['node_select'] = 3
     results = opt.solve(instance, tee=True,options_string="mipgap=0.03") # Solving a model instance 
